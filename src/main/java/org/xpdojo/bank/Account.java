@@ -16,4 +16,9 @@ public class Account {
             balance -= amount;
         }
     }
+
+    public void transfer(int amount, Account targetAccount) {
+        this.withdraw(amount);
+        targetAccount.deposit(amount);
+    }
 }

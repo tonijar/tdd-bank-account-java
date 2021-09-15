@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 
 public class AccountTest {
 
@@ -50,5 +49,14 @@ public class AccountTest {
         account.deposit(100);
         account.withdraw(200);
         assertThat(account.balance()).isEqualTo(100);
+    }
+
+    @Test
+    public void transferZeroAmountBetweenAccountsNotAffectBalances() {
+        Account sourceAccount = new Account();
+        Account targetAccount = new Account();
+        sourceAccount.transfer(0, targetAccount);
+        assertThat(sourceAccount.balance()).isEqualTo(0);
+        assertThat(targetAccount.balance()).isEqualTo(0);
     }
 }
