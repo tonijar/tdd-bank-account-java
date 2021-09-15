@@ -69,4 +69,14 @@ public class AccountTest {
         assertThat(sourceAccount.balance()).isEqualTo(100);
         assertThat(targetAccount.balance()).isEqualTo(0);
     }
+
+    @Test
+    public void transferAmountBetweenAccountsWithEnoughFundsAffectBalances() {
+        Account sourceAccount = new Account();
+        sourceAccount.deposit(200);
+        Account targetAccount = new Account();
+        sourceAccount.transfer(100, targetAccount);
+        assertThat(sourceAccount.balance()).isEqualTo(100);
+        assertThat(targetAccount.balance()).isEqualTo(100);
+    }
 }
