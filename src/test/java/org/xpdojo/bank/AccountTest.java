@@ -30,7 +30,7 @@ public class AccountTest {
     }
 
     @Test
-    public void withdrawZeroAmountDoesntAffectAccountBalance() {
+    public void withdrawZeroAmountNotAffectsAccountBalance() {
         Account account = new Account();
         account.withdraw(0);
         assertThat(account.balance()).isEqualTo(0);
@@ -41,6 +41,14 @@ public class AccountTest {
         Account account = new Account();
         account.deposit(200);
         account.withdraw(100);
+        assertThat(account.balance()).isEqualTo(100);
+    }
+
+    @Test
+    public void withdrawAmountFromAccountWithoutEnoughFundsNotAffectsBalance() {
+        Account account = new Account();
+        account.deposit(100);
+        account.withdraw(200);
         assertThat(account.balance()).isEqualTo(100);
     }
 }
